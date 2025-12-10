@@ -56,14 +56,34 @@ export function CfdiTable({ data, fileName, onClear }: CfdiTableProps) {
         </div>
       </CardHeader>
       <CardContent>
-        <ScrollArea className="h-[50vh] w-full border rounded-md">
+        <ScrollArea className="h-[60vh] w-full border rounded-md">
           <Table>
             <TableHeader className="sticky top-0 bg-card z-10">
               <TableRow>
-                <TableHead>Versión</TableHead>
+                <TableHead>Versión complemento</TableHead>
                 <TableHead>Folio Fiscal</TableHead>
                 <TableHead>Serie</TableHead>
                 <TableHead>Folio</TableHead>
+                <TableHead>Tipo descarga</TableHead>
+                <TableHead>RFC</TableHead>
+                <TableHead>Empleado</TableHead>
+                <TableHead>Regimen Fiscal</TableHead>
+                <TableHead>Codigo Postal</TableHead>
+                <TableHead>No. Empleado</TableHead>
+                <TableHead>No. seguro social</TableHead>
+                <TableHead>Banco</TableHead>
+                <TableHead>Cuenta bancaria</TableHead>
+                <TableHead>Régimen contratación</TableHead>
+                <TableHead>Fecha inicio relación Laboral</TableHead>
+                <TableHead>Departamento</TableHead>
+                <TableHead>Puesto</TableHead>
+                <TableHead>Riesgo</TableHead>
+                <TableHead>Tipo contrato</TableHead>
+                <TableHead>Periodicidad pago</TableHead>
+                <TableHead>Tipo jornada</TableHead>
+                <TableHead>S.B.C</TableHead>
+                <TableHead>S.D.I</TableHead>
+                <TableHead>Tipo de nómina</TableHead>
                 <TableHead>Fecha Inicial Pago</TableHead>
                 <TableHead>Fecha Final Pago</TableHead>
                 <TableHead>Días Pagados</TableHead>
@@ -86,6 +106,26 @@ export function CfdiTable({ data, fileName, onClear }: CfdiTableProps) {
                   <TableCell className="whitespace-nowrap">{item.folioFiscal}</TableCell>
                   <TableCell>{item.serie}</TableCell>
                   <TableCell>{item.folio}</TableCell>
+                  <TableCell>{item.tipoDescarga}</TableCell>
+                  <TableCell>{item.rfc}</TableCell>
+                  <TableCell>{item.empleado}</TableCell>
+                  <TableCell>{item.regimenFiscal}</TableCell>
+                  <TableCell>{item.codigoPostal}</TableCell>
+                  <TableCell>{item.numEmpleado}</TableCell>
+                  <TableCell>{item.numSeguroSocial}</TableCell>
+                  <TableCell>{item.banco}</TableCell>
+                  <TableCell>{item.cuentaBancaria}</TableCell>
+                  <TableCell>{item.regimenContratacion}</TableCell>
+                  <TableCell>{item.fechaInicioRelLaboral}</TableCell>
+                  <TableCell>{item.departamento}</TableCell>
+                  <TableCell>{item.puesto}</TableCell>
+                  <TableCell>{item.riesgo}</TableCell>
+                  <TableCell>{item.tipoContrato}</TableCell>
+                  <TableCell>{item.periodicidadPago}</TableCell>
+                  <TableCell>{item.tipoJornada}</TableCell>
+                  <TableCell>{item.sbc}</TableCell>
+                  <TableCell>{item.sdi}</TableCell>
+                  <TableCell>{item.tipoNomina}</TableCell>
                   <TableCell>{item.fechaInicialPago}</TableCell>
                   <TableCell>{item.fechaFinalPago}</TableCell>
                   <TableCell>{item.diasPagados}</TableCell>

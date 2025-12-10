@@ -16,6 +16,9 @@ export const parseCfdi = (xmlString: string): CfdiData[] => {
 
   const comprobante = xmlDoc.getElementsByTagNameNS("http://www.sat.gob.mx/cfd/4", "Comprobante")[0];
   if (!comprobante) throw new Error("Archivo XML no válido: No se encontró el nodo 'cfdi:Comprobante'.");
+  
+  const emisor = comprobante.getElementsByTagNameNS("http://www.sat.gob.mx/cfd/4", "Emisor")[0];
+  const receptor = comprobante.getElementsByTagNameNS("http://www.sat.gob.mx/cfd/4", "Receptor")[0];
 
   const timbreFiscal = xmlDoc.getElementsByTagNameNS("http://www.sat.gob.mx/TimbreFiscalDigital", "TimbreFiscalDigital")[0];
   if (!timbreFiscal) throw new Error("Archivo XML no válido: No se encontró el nodo 'tfd:TimbreFiscalDigital'.");
@@ -23,6 +26,8 @@ export const parseCfdi = (xmlString: string): CfdiData[] => {
   const nomina = xmlDoc.getElementsByTagNameNS("http://www.sat.gob.mx/nomina12", "Nomina")[0];
   if (!nomina) throw new Error("Archivo XML no válido: No se encontró el nodo 'nomina12:Nomina'.");
   
+  const nominaReceptor = nomina.getElementsByTagNameNS("http://www.sat.gob.mx/nomina12", "Receptor")[0];
+
   const percepcionesNode = nomina.getElementsByTagNameNS("http://www.sat.gob.mx/nomina12", "Percepciones")[0];
   const deduccionesNode = nomina.getElementsByTagNameNS("http://www.sat.gob.mx/nomina12", "Deducciones")[0];
 
@@ -31,6 +36,26 @@ export const parseCfdi = (xmlString: string): CfdiData[] => {
     folioFiscal: getAttr(timbreFiscal, 'UUID'),
     serie: getAttr(comprobante, 'Serie'),
     folio: getAttr(comprobante, 'Folio'),
+    tipoDescarga: 'Nómina',
+    rfc: getAttr(receptor, 'Rfc'),
+    empleado: getAttr(receptor, 'Nombre'),
+    regimenFiscal: getAttr(receptor, 'RegimenFiscalReceptor'),
+    codigoPostal: getAttr(comprobante, 'LugarExpedicion'),
+    numEmpleado: getAttr(nominaReceptor, 'NumEmpleado'),
+    numSeguroSocial: getAttr(nominaReceptor, 'NumSeguridadSocial'),
+    banco: getAttr(nominaReceptor, 'Banco'),
+    cuentaBancaria: getAttr(nominaReceptor, 'CuentaBancaria'),
+    regimenContratacion: getAttr(nominaReceptor, 'TipoRegimen'),
+    fechaInicioRelLaboral: getAttr(nominaReceptor, 'FechaInicioRelLaboral'),
+    departamento: getAttr(nominaReceptor, 'Departamento'),
+    puesto: getAttr(nominaReceptor, 'Puesto'),
+    riesgo: getAttr(nominaReceptor, 'RiesgoPuesto'),
+    tipoContrato: getAttr(nominaReceptor, 'TipoContrato'),
+    periodicidadPago: getAttr(nominaReceptor, 'PeriodicidadPago'),
+    tipoJornada: getAttr(nominaReceptor, 'TipoJornada'),
+    sbc: getAttr(nominaReceptor, 'SalarioBaseCotApor'),
+    sdi: getAttr(nominaReceptor, 'SalarioDiarioIntegrado'),
+    tipoNomina: getAttr(nomina, 'TipoNomina'),
     fechaInicialPago: getAttr(nomina, 'FechaInicialPago'),
     fechaFinalPago: getAttr(nomina, 'FechaFinalPago'),
     diasPagados: getAttr(nomina, 'NumDiasPagados'),
